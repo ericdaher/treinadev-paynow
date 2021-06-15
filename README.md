@@ -22,3 +22,11 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+## Gems utilizadas
+
+* Rspec
+* Capybara
+* Devise
+
+Modelagem encontrada em https://whimsical.com/modelos-H73oN88DSvirWsZwhaAVWx
