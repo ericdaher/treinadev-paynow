@@ -1,0 +1,14 @@
+---
+pt-BR:
+  activerecord:
+    attributes:
+      admin:
+        password: Senha
+        password_confirmation: Confirmar Senha
+  admins:
+    registrations:
+      new:
+        submit: Criar Conta
+    sessions:
+      new:
+        login: Fazer Login
