@@ -1,0 +1,6 @@
+<h1>Bem vindo à PayNow.</h1>
+
+<% if user_signed_in? %>
+<% else %>
+  <%= link_to 'Entrar', new_user_session_path %>
+<% end %>

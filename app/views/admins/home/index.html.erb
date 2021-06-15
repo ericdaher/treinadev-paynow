@@ -1,0 +1,7 @@
+<h1>Bem vindo à area administrativa da PayNow.</h1>
+
+<% if admin_signed_in? %>
+  <p>Logado como <%= current_admin.email %></p>
+  <%= link_to 'Sair', destroy_admin_session_path, method: :delete %>
+  <%= link_to 'Criar Novo Usuário', new_admin_registration_path %>
+<% end %>

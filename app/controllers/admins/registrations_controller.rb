@@ -4,6 +4,23 @@ class Admins::RegistrationsController < Devise::RegistrationsController
   before_action :authenticate_admin!
   skip_before_action :require_no_authentication
 
+  def new
+    if admin_signed_in?
+      super
+    else
+      redirect_to admins_root_path
+    end
+  end
+
+  # POST /resource
+  def create
+    if admin_signed_in?
+      super
+    else
+      redirect_to admins_root_path
+    end
+  end
+
   private
 
   def sign_up(resource_name, resource)
