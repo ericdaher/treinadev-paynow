@@ -1,6 +1,8 @@
 <h1>Bem vindo à PayNow.</h1>
 
 <% if user_signed_in? %>
+  <p>Logado como <%= current_user.email %></p>
 <% else %>
   <%= link_to 'Entrar', new_user_session_path %>
+  <%= link_to 'Fazer cadastro', new_user_registration_path %>
 <% end %>

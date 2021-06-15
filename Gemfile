@@ -5,6 +5,7 @@ ruby '3.0.0'
 
 gem 'rails', '~> 6.1.3', '>= 6.1.3.2'
 
+gem 'cpf_cnpj'
 gem 'devise'
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'jbuilder', '~> 2.7'

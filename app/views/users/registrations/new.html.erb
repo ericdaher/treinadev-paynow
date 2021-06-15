@@ -21,8 +21,13 @@
     <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
+  <div class="field">
+    <%= f.label :company_id, 'Empresa' %>
+    <%= f.collection_select :company_id, @companies, :id, :display_name %>
+  </div>
+
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit t('.submit') %>
   </div>
 <% end %>
 

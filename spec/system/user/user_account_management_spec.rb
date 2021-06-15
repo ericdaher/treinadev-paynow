@@ -2,7 +2,20 @@ require 'rails_helper'
 
 describe 'User account management' do
   context 'sign up' do
-    xit 'successfully' do
+    it 'successfully' do
+      company = Company.create!(name: 'CodePlay', cnpj: CNPJ.generate, email: 'faturamento@codeplay.com.br')
+      
+      visit root_path
+      click_on 'Fazer cadastro'
+
+      fill_in 'Email', with: 'usuario@codeplay.com.br'
+      fill_in 'Senha', with: '12345678'
+      fill_in 'Confirmar Senha', with: '12345678'
+      select 'CodePlay (@codeplay.com.br)', from: 'Empresa'
+      click_on 'Criar Conta'
+
+      expect(current_path).to eq(root_path)
+      expect(page).to have_text('Logado como usuario@codeplay.com.br')
     end
   end
 
