@@ -7,6 +7,8 @@ Rails.application.routes.draw do
 
   root "home#index"
 
+  resources :companies, only: [:show, :new, :create, :edit, :update]
+
   namespace 'admins' do
     root "home#index"
   end

@@ -22,8 +22,11 @@
   </div>
 
   <div class="field">
-    <%= f.label :company_id, 'Empresa' %>
-    <%= f.collection_select :company_id, @companies, :id, :display_name %>
+    <% unless @companies.nil? %>
+      <%= f.label :company_id, 'Empresa' %>
+      <%= f.collection_select :company_id, @companies, :id, :display_name %>
+    <% end %>
+    <%= link_to 'Adicionar Empresa', new_company_path %>
   </div>
 
   <div class="actions">

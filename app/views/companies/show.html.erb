@@ -1,0 +1,14 @@
+<h3><%= @company.name %></h3>
+
+<dl>
+  <dt><%= 'CPNJ' %></dt>
+  <dd><%= @company.cnpj %></dd>
+  <dt><%= 'Email para Faturamento' %></dt>
+  <dd><%= @company.email %></dd>
+</dl>
+
+<% @company.users.each do |user| %>
+  <p><%= user.email %></p>
+<% end %>
+
+<%= link_to 'Editar', edit_company_path %>

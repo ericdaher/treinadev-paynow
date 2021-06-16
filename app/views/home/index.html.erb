@@ -2,6 +2,8 @@
 
 <% if user_signed_in? %>
   <p>Logado como <%= current_user.email %></p>
+  <%= link_to 'Sair', destroy_user_session_path, method: :delete %>
+  <%= link_to current_user.company.name, current_user.company %>
 <% else %>
   <%= link_to 'Entrar', new_user_session_path %>
   <%= link_to 'Fazer cadastro', new_user_registration_path %>

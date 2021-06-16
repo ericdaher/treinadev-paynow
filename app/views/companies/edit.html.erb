@@ -1,0 +1,19 @@
+<h3><%= @company.name %></h3>
+
+<% @company.errors.each do |error| %>
+  <span><%= error.full_message %></span><br>
+<% end %>
+
+<%= form_with model: @company do |form| %>
+
+  <%= form.label :name, 'Razão Social' %>
+  <%= form.text_field :name %>
+  
+  <%= form.label :cnpj, 'CNPJ' %>
+  <%= form.text_field :cnpj %>
+  
+  <%= form.label :email, 'Email para Faturamento' %>
+  <%= form.text_field :email %>
+
+  <%= form.submit 'Finalizar Edição' %>
+<% end %>
