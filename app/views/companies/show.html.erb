@@ -9,6 +9,13 @@
 
 <% @company.users.each do |user| %>
   <p><%= user.email %></p>
+  <% if user != current_user %>
+    <% if user.active? %>
+      <%= link_to 'Desativar usuário', toggle_active_user_path(user), method: :post %>
+    <% else %>
+      <%= link_to 'Ativar usuário', toggle_active_user_path(user), method: :post %>
+    <% end %>
+  <% end %>
 <% end %>
 
 <%= link_to 'Editar', edit_company_path %>

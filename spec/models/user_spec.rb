@@ -10,5 +10,14 @@ RSpec.describe User, type: :model do
 
       expect(user.errors[:email]).to include('deve ter o mesmo domínio do email da empresa')
     end
+
+    it 'first user must be declared company supervisor' do
+      company = Company.create!(name: 'CodePlay', cnpj: CNPJ.generate, email: 'faturamento@codeplay.com.br')
+      supervisor = User.create!(email: 'supervisor@codeplay.com.br', password: '12345678', company: company)
+      common = User.create!(email: 'comum@codeplay.com.br', password: '12345678', company: company)
+
+      expect(supervisor.role).to eq("supervisor")
+      expect(common.role).to eq("common")
+    end
   end
 end

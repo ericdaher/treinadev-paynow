@@ -9,5 +9,9 @@
 Admin.create!(email: 'admin@paynow.com.br', password: '12345678')
 puts 'Admin created'
 
-Company.create!(name: 'CodePlay', cnpj: CNPJ.generate, email: 'faturamento@codeplay.com.br')
+c = Company.create!(name: 'CodePlay', cnpj: CNPJ.generate, email: 'faturamento@codeplay.com.br')
 puts 'Company created'
+
+User.create!(email: 'supervisor@codeplay.com.br', password: '12345678', company: c)
+User.create!(email: 'comum@codeplay.com.br', password: '12345678', company: c)
+puts 'Users created'

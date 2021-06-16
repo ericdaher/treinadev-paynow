@@ -1,7 +1,8 @@
 class CompaniesController < ApplicationController
   before_action :authenticate_user!, only: [:show, :edit, :update]
   before_action :set_company, only: [:show, :edit, :update]
-  before_action :check_user_company, only: [:show, :edit]
+  before_action :check_user_company, only: [:show, :edit, :update]
+  before_action :check_user_role, only: [:edit, :update]
 
   def new
     @company = Company.new
@@ -42,5 +43,9 @@ class CompaniesController < ApplicationController
 
   def check_user_company
     redirect_to root_path unless current_user.company == @company
+  end
+
+  def check_user_role
+    redirect_to company_path, notice: 'Apenas supervisores podem editar uma empresa' unless current_user.supervisor?
   end
 end
