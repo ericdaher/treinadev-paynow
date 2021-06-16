@@ -45,6 +45,21 @@ describe 'User account management' do
       expect(current_path).to eq(new_user_registration_path)
       expect(page).to have_text('Empresa criada com sucesso')     
     end
+
+    it "email must be from the same domain as the company's email" do
+      company = Company.create!(name: 'CodePlay', cnpj: CNPJ.generate, email: 'faturamento@codeplay.com.br')
+      
+      visit root_path
+      click_on 'Fazer cadastro'
+
+      fill_in 'Email', with: 'usuario@exemplo.com.br'
+      fill_in 'Senha', with: '12345678'
+      fill_in 'Confirmar Senha', with: '12345678'
+      select 'CodePlay (@codeplay.com.br)', from: 'Empresa'
+
+      expect { click_on 'Criar Conta' }.to_not change { User.count }
+      expect(page).to have_text('deve ter o mesmo domínio do email da empresa')
+    end
   end
 
   context 'sign in' do
