@@ -15,5 +15,6 @@ Rails.application.routes.draw do
 
   namespace 'admins' do
     root "home#index"
+    resources :payment_methods
   end
 end

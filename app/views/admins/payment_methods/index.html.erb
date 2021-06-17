@@ -1,0 +1,12 @@
+<h3>Meios de Pagamento</h3>
+
+<% @payment_methods.each do |payment_method| %>
+  <dl>
+    <dt><%= 'Nome' %></dt>
+    <dd><%= link_to payment_method.name, admins_payment_method_path(payment_method) %></dd>
+    <dt><%= 'Tipo' %></dt>
+    <dd><%= PaymentMethod.human_enum_name(:method_type, payment_method.method_type) %></dd>
+  </dl>
+<% end %>
+
+<%= link_to 'Adicionar Novo', new_admins_payment_method_path %>

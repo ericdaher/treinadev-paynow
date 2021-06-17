@@ -1,0 +1,26 @@
+<h3><%= @payment_method.name %></h3>
+
+<% @payment_method.errors.each do |error| %>
+  <span><%= error.full_message %></span><br>
+<% end %>
+
+<%= form_with model: [:admins, @payment_method] do |form| %>
+
+  <%= form.label :name, 'Nome' %>
+  <%= form.text_field :name %>
+
+  <%= form.label :method_type, 'Tipo' %>
+  <%= form.select :method_type, PaymentMethod.method_types.keys.map { |method| 
+                                                                      [PaymentMethod.human_enum_name(:method_type, method), method] } %>
+  
+  <%= form.label :payment_tax, 'Taxa (%)' %>
+  <%= form.number_field :payment_tax %>
+  
+  <%= form.label :max_tax, 'Taxa máxima' %>
+  <%= form.number_field :max_tax %>
+
+  <%= form.label :icon, 'Ícone' %>
+  <%= form.file_field :icon %>
+
+  <%= form.submit 'Finalizar Edição' %>
+<% end %>
