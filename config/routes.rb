@@ -15,6 +15,8 @@ Rails.application.routes.draw do
 
   namespace 'admins' do
     root "home#index"
-    resources :payment_methods
+    resources :payment_methods do 
+      post 'toggle_active', on: :member
+    end
   end
 end

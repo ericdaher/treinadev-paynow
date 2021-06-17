@@ -1,5 +1,5 @@
 class Admins::PaymentMethodsController < Admins::AdminController
-  before_action :set_payment_method, only: [:show, :edit, :update, :destroy]
+  before_action :set_payment_method, only: [:show, :edit, :update, :destroy, :toggle_active]
 
   def index
     @payment_methods = PaymentMethod.all
@@ -35,6 +35,12 @@ class Admins::PaymentMethodsController < Admins::AdminController
   def destroy
     @payment_method.destroy
     redirect_to admins_payment_methods_path, notice: 'Meio de pagamento excluído com sucesso'
+  end
+
+  def toggle_active
+    @payment_method.active = !@payment_method.active
+    @payment_method.save!
+    redirect_to admins_payment_method_path(@payment_method)
   end
 
   private

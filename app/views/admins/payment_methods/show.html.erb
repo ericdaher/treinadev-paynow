@@ -14,3 +14,8 @@
 
 <%= link_to 'Editar', edit_admins_payment_method_path %>
 <%= link_to 'Excluir', admins_payment_method_path, method: :delete %>
+<% if @payment_method.active? %>
+  <%= link_to 'Inativar', toggle_active_admins_payment_method_path, method: :post %>
+<% else %>
+  <%= link_to 'Ativar', toggle_active_admins_payment_method_path, method: :post %>
+<% end %>
