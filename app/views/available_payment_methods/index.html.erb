@@ -1,0 +1,11 @@
+<h3>Meus Meios de Pagamento</h3>
+
+<% @available_payment_methods.each do |available_payment_method| %>
+  <dl>
+    <dt><%= 'Nome' %></dt>
+    <dd><%= link_to available_payment_method.payment_method.name, available_payment_method_path(available_payment_method) %></dd>
+    <dt><%= 'Tipo' %></dt>
+    <dd><%= PaymentMethod.human_enum_name(:method_type, available_payment_method.payment_method.method_type) %></dd>
+  </dl>
+<% end %>
+

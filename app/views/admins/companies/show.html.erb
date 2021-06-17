@@ -11,16 +11,16 @@
   <p><%= user.email %></p>
   <% if user != current_user %>
     <% if user.active? %>
-      <%= link_to 'Desativar usuário', toggle_active_user_path(user), method: :post %>
+      <%= button_to 'Desativar usuário', toggle_active_user_path(user) %>
     <% else %>
-      <%= link_to 'Ativar usuário', toggle_active_user_path(user), method: :post %>
+      <%= button_to 'Ativar usuário', toggle_active_user_path(user) %>
     <% end %>
   <% end %>
 <% end %>
 
 <%= link_to 'Editar', edit_admins_company_path %>
 <% if @company.active? %>
-  <%= link_to 'Suspender', toggle_active_admins_company_path, method: :post %>
+  <%= button_to 'Suspender', toggle_active_admins_company_path %>
 <% else %>
-  <%= link_to 'Restaurar', toggle_active_admins_company_path, method: :post %>
+  <%= button_to 'Restaurar', toggle_active_admins_company_path %>
 <% end %>

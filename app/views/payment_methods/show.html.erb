@@ -1,0 +1,14 @@
+<h3><%= @payment_method.name %></h3>
+<%= image_tag @payment_method.icon %>
+
+<dl>
+  <dt><%= 'Tipo' %></dt>
+  <dd><%= PaymentMethod.human_enum_name(:method_type, @payment_method.method_type) %></dd>
+  <dt><%= 'Taxa (%)' %></dt>
+  <dd><%= number_with_delimiter @payment_method.payment_tax %></dd>
+  <dt><%= 'Taxa máxima' %></dt>
+  <dd><%= number_to_currency @payment_method.max_tax %></dd>
+</dl>
+
+<%= button_to 'Adicionar Meio de Pagamento', available_payment_methods_path, 
+    params: { available_payment_method: { payment_method_id: @payment_method.id, company_id: current_user.company.id } } %>

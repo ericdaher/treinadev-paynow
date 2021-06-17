@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   root "home#index"
 
   resources :companies, only: [:show, :new, :create, :edit, :update]
+  resources :payment_methods, only: [:index, :show]
+  resources :available_payment_methods, only: [:index, :show, :create, :destroy]
 
   resources :users, only: [] do
     post 'toggle_active', on: :member, to: 'user/users#toggle_active'

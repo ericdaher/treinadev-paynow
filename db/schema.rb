@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_17_043637) do
+ActiveRecord::Schema.define(version: 2021_06_17_045414) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -50,6 +50,15 @@ ActiveRecord::Schema.define(version: 2021_06_17_043637) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+  end
+
+  create_table "available_payment_methods", force: :cascade do |t|
+    t.integer "payment_method_id", null: false
+    t.integer "company_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["company_id"], name: "index_available_payment_methods_on_company_id"
+    t.index ["payment_method_id"], name: "index_available_payment_methods_on_payment_method_id"
   end
 
   create_table "companies", force: :cascade do |t|
@@ -100,5 +109,7 @@ ActiveRecord::Schema.define(version: 2021_06_17_043637) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "available_payment_methods", "companies"
+  add_foreign_key "available_payment_methods", "payment_methods"
   add_foreign_key "users", "companies"
 end
