@@ -1,0 +1,12 @@
+<h3>Empresas</h3>
+
+<% @companies.each do |company| %>
+  <dl>
+    <dt><%= 'Nome' %></dt>
+    <dd><%= link_to company.name, admins_company_path(company) %></dd>
+    <dt><%= 'CPNJ' %></dt>
+    <dd><%= company.cnpj %></dd>
+    <dt><%= 'Email para Faturamento' %></dt>
+    <dd><%= company.email %></dd>
+  </dl>
+<% end %>

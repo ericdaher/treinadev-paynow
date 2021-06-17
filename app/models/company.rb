@@ -1,4 +1,6 @@
 class Company < ApplicationRecord
+  has_paper_trail
+  
   validates :name, :email, :cnpj, presence: true
   validates :email, :cnpj, uniqueness: true
   validates :cnpj, valid_cnpj: true

@@ -9,6 +9,7 @@ gem 'cpf_cnpj'
 gem 'devise'
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'jbuilder', '~> 2.7'
+gem 'paper_trail'
 gem 'puma', '~> 5.0'
 gem 'sass-rails', '>= 6'
 gem 'turbolinks', '~> 5'

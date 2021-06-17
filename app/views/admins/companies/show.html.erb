@@ -1,0 +1,26 @@
+<h3><%= @company.name %></h3>
+
+<dl>
+  <dt><%= 'CPNJ' %></dt>
+  <dd><%= @company.cnpj %></dd>
+  <dt><%= 'Email para Faturamento' %></dt>
+  <dd><%= @company.email %></dd>
+</dl>
+
+<% @company.users.each do |user| %>
+  <p><%= user.email %></p>
+  <% if user != current_user %>
+    <% if user.active? %>
+      <%= link_to 'Desativar usuário', toggle_active_user_path(user), method: :post %>
+    <% else %>
+      <%= link_to 'Ativar usuário', toggle_active_user_path(user), method: :post %>
+    <% end %>
+  <% end %>
+<% end %>
+
+<%= link_to 'Editar', edit_admins_company_path %>
+<% if @company.active? %>
+  <%= link_to 'Suspender', toggle_active_admins_company_path, method: :post %>
+<% else %>
+  <%= link_to 'Restaurar', toggle_active_admins_company_path, method: :post %>
+<% end %>

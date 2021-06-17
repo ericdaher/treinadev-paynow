@@ -18,5 +18,8 @@ Rails.application.routes.draw do
     resources :payment_methods do 
       post 'toggle_active', on: :member
     end
+    resources :companies, only: [:index, :show, :edit, :update] do
+      post 'toggle_active', on: :member
+    end
   end
 end
