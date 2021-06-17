@@ -31,4 +31,17 @@ describe 'User registers available payment method' do
     expect(page).to have_text('Boleto')
     expect(page).to_not have_text('PIX')
   end
+
+  it "can't register when not logged in" do
+    company = Company.create!(name: 'CodePlay', cnpj: CNPJ.generate, email: 'faturamento@codeplay.com.br')
+    user = User.create!(email: 'usuario@codeplay.com.br', password: '12345678', company: company)
+    payment_method = PaymentMethod.create!(name: 'VISA', method_type: "credit_card", payment_tax: 3.99, max_tax: 50, 
+                          active: true, icon: fixture_file_upload(Rails.root.join('spec/fixtures/visa_logo.gif'), 'visa_logo.gif'))
+
+    visit available_payment_methods_path
+    expect(page).to_not have_text('Adicionar Meio de Pagamento')
+
+    expect(page).to have_text('Para continuar, efetue login ou registre-se.')
+    expect(current_path).to eq(new_user_session_path)
+  end
 end

@@ -1,4 +1,5 @@
 class AvailablePaymentMethodsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_company_and_payment_method, only: [:create]
   before_action :set_available_payment_method, only: [:show, :destroy]
 
@@ -36,5 +37,10 @@ class AvailablePaymentMethodsController < ApplicationController
   def set_company_and_payment_method
     @company = Company.find(available_payment_method_params[:company_id])
     @payment_method = PaymentMethod.find(available_payment_method_params[:payment_method_id])
+  end
+
+  def check_user_company
+    @company = @available_payment_method.company if @company.nil?
+    redirect_to root_path unless current_user.company == @company
   end
 end

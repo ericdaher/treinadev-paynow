@@ -38,4 +38,12 @@ describe 'User edits company' do
     expect(current_path).to eq(company_path(company))
     expect(page).to have_text('Apenas supervisores podem editar uma empresa')
   end
+
+  it "can't edit company when not logged in" do
+    company = Company.create!(name: 'CodePlay', cnpj: CNPJ.generate, email: 'faturamento@codeplay.com.br')
+
+    visit edit_company_path(company)
+    expect(page).to have_text('Para continuar, efetue login ou registre-se.')
+    expect(current_path).to eq(new_user_session_path)
+  end
 end
