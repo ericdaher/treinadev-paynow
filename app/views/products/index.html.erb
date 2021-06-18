@@ -1,0 +1,11 @@
+<h3>Produtos</h3>
+
+<% @products.each do |product| %>
+  <dl>
+    <dt><%= 'Nome' %></dt>
+    <dd><%= link_to product.name, product_path(product) %></dd>
+    <dt><%= 'Valor' %></dt>
+    <dd><%= number_to_currency product.value %></dd>
+  </dl>
+<% end %>
+

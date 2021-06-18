@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_17_045414) do
+ActiveRecord::Schema.define(version: 2021_06_18_003752) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -80,6 +80,18 @@ ActiveRecord::Schema.define(version: 2021_06_17_045414) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "products", force: :cascade do |t|
+    t.string "name"
+    t.decimal "value"
+    t.decimal "discount_credit", default: "0.0"
+    t.decimal "discount_ticket", default: "0.0"
+    t.decimal "discount_pix", default: "0.0"
+    t.integer "company_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["company_id"], name: "index_products_on_company_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -111,5 +123,6 @@ ActiveRecord::Schema.define(version: 2021_06_17_045414) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "available_payment_methods", "companies"
   add_foreign_key "available_payment_methods", "payment_methods"
+  add_foreign_key "products", "companies"
   add_foreign_key "users", "companies"
 end

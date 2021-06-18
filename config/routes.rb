@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :companies, only: [:show, :new, :create, :edit, :update]
   resources :payment_methods, only: [:index, :show]
   resources :available_payment_methods, only: [:index, :show, :create, :destroy]
+  resources :products, only: [:index, :show]
 
   resources :users, only: [] do
     post 'toggle_active', on: :member, to: 'user/users#toggle_active'

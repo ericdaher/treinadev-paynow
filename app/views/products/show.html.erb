@@ -1,0 +1,12 @@
+<h3><%= @product.name %></h3>
+
+<dl>
+  <dt><%= 'Valor' %></dt>
+  <dd><%= number_to_currency @product.value %></dd>
+  <dt><%= 'Desconto para cartão (%)' %></dt>
+  <dd><%= number_with_delimiter @product.discount_credit %></dd>
+  <dt><%= 'Desconto para boleto (%)' %></dt>
+  <dd><%= number_with_delimiter @product.discount_ticket %></dd>
+  <dt><%= 'Desconto para pix (%)' %></dt>
+  <dd><%= number_with_delimiter @product.discount_pix %></dd>
+</dl>
