@@ -2,7 +2,7 @@
 
 <dl>
   <dt><%= 'Valor' %></dt>
-  <dd><%= number_to_currency @product.value %></dd>
+  <dd><%= number_to_currency @product.price %></dd>
   <dt><%= 'Desconto para cartão (%)' %></dt>
   <dd><%= number_with_delimiter @product.discount_credit %></dd>
   <dt><%= 'Desconto para boleto (%)' %></dt>
@@ -10,3 +10,6 @@
   <dt><%= 'Desconto para pix (%)' %></dt>
   <dd><%= number_with_delimiter @product.discount_pix %></dd>
 </dl>
+
+<%= link_to 'Editar', edit_product_path %>
+<%= link_to 'Excluir', product_path(@product), method: :delete %>

@@ -5,7 +5,8 @@
     <dt><%= 'Nome' %></dt>
     <dd><%= link_to product.name, product_path(product) %></dd>
     <dt><%= 'Valor' %></dt>
-    <dd><%= number_to_currency product.value %></dd>
+    <dd><%= number_to_currency product.price %></dd>
   </dl>
 <% end %>
 
+<%= link_to 'Adicionar Novo', new_product_path %>

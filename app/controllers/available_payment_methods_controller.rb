@@ -2,9 +2,10 @@ class AvailablePaymentMethodsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_company_and_payment_method, only: [:create]
   before_action :set_available_payment_method, only: [:show, :destroy]
+  before_action :check_user_company, only: [:show]
 
   def index
-    @available_payment_methods = AvailablePaymentMethod.all
+    @available_payment_methods = AvailablePaymentMethod.where(company: current_user.company)
   end
 
   def show

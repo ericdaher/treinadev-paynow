@@ -82,7 +82,7 @@ ActiveRecord::Schema.define(version: 2021_06_18_003752) do
 
   create_table "products", force: :cascade do |t|
     t.string "name"
-    t.decimal "value"
+    t.decimal "price"
     t.decimal "discount_credit", default: "0.0"
     t.decimal "discount_ticket", default: "0.0"
     t.decimal "discount_pix", default: "0.0"
