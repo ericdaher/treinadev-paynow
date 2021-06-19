@@ -1,7 +1,7 @@
 class PaymentMethod < ApplicationRecord
   has_one_attached :icon
 
-  enum method_type: { credit_card: 0, ticket: 1, pix: 2 }
+  enum method_type: { credit: 0, ticket: 1, pix: 2 }
 
   validates :name, :method_type, :icon, :payment_tax, :max_tax, presence: true
   validates :name, uniqueness: true

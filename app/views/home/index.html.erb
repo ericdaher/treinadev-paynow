@@ -5,7 +5,9 @@
   <%= link_to 'Sair', destroy_user_session_path, method: :delete %>
   <%= link_to current_user.company.name, current_user.company %>
   <%= link_to 'Meios de Pagamento', payment_methods_path %>
+  <%= link_to 'Meus Meios de Pagamento', available_payment_methods_path %>
   <%= link_to 'Produtos', products_path %>
+  <%= link_to 'Cobranças', bills_path %>
 <% else %>
   <%= link_to 'Entrar', new_user_session_path %>
   <%= link_to 'Fazer cadastro', new_user_registration_path %>

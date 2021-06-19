@@ -4,7 +4,7 @@ pt-BR:
     attributes:
       payment_method:
         method_type:
-          credit_card: Cartão de Crédito
+          credit: Cartão de Crédito
           ticket: Boleto Bancário
           pix: PIX
       active:

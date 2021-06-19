@@ -1,0 +1,10 @@
+---
+pt-BR:
+  activerecord:
+    attributes:
+      bill:
+        status:
+          pending: Pendente
+          approved: Aprovada
+          rejected: Rejeitada
+          expired: Expirada

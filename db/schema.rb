@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_18_003752) do
+ActiveRecord::Schema.define(version: 2021_06_19_121114) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -59,6 +59,27 @@ ActiveRecord::Schema.define(version: 2021_06_18_003752) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["company_id"], name: "index_available_payment_methods_on_company_id"
     t.index ["payment_method_id"], name: "index_available_payment_methods_on_payment_method_id"
+  end
+
+  create_table "billing_attempts", force: :cascade do |t|
+    t.date "attempt_date"
+    t.integer "status"
+    t.integer "bill_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["bill_id"], name: "index_billing_attempts_on_bill_id"
+  end
+
+  create_table "bills", force: :cascade do |t|
+    t.integer "product_id", null: false
+    t.decimal "amount"
+    t.integer "payment_method_id", null: false
+    t.date "due_date"
+    t.integer "status", default: 0
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["payment_method_id"], name: "index_bills_on_payment_method_id"
+    t.index ["product_id"], name: "index_bills_on_product_id"
   end
 
   create_table "companies", force: :cascade do |t|
@@ -123,6 +144,9 @@ ActiveRecord::Schema.define(version: 2021_06_18_003752) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "available_payment_methods", "companies"
   add_foreign_key "available_payment_methods", "payment_methods"
+  add_foreign_key "billing_attempts", "bills"
+  add_foreign_key "bills", "payment_methods"
+  add_foreign_key "bills", "products"
   add_foreign_key "products", "companies"
   add_foreign_key "users", "companies"
 end

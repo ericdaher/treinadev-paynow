@@ -1,0 +1,15 @@
+<h3>Cobranças</h3>
+
+<% @bills.each do |bill| %>
+  <dl>
+    <dt><%= 'Produto' %></dt>
+    <dd><%= link_to bill.product.name, bill_path(bill) %></dd>
+    <dt><%= 'Preço de cobrança' %></dt>
+    <dd><%= number_to_currency bill.final_amount %></dd>
+    <dt><%= 'Status' %></dt>
+    <dd><%= Bill.human_enum_name(:status, bill.status) %></dd>
+  </dl>
+<% end %>
+
+<%= link_to 'Adicionar Cobrança', new_bill_path %>
+

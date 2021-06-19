@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'Admin edits payment method' do
   it 'successfully' do
     admin = Admin.create!(email: 'admin@paynow.com.br', password: '12345678')
-    payment_method = PaymentMethod.create!(name: 'VISA', method_type: "credit_card", payment_tax: 3.99, max_tax: 50, 
+    payment_method = PaymentMethod.create!(name: 'VISA', method_type: "credit", payment_tax: 3.99, max_tax: 50, 
                                            active: true, icon: fixture_file_upload(Rails.root.join('spec/fixtures/visa_logo.gif'), 'visa_logo.gif'))
     
     login_as admin, scope: :admin

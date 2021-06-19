@@ -14,9 +14,9 @@ RSpec.describe PaymentMethod, type: :model do
     end
 
     it 'name must be unique' do
-      PaymentMethod.create!(name: 'VISA', method_type: "credit_card", payment_tax: 3.99, max_tax: 50, 
+      PaymentMethod.create!(name: 'VISA', method_type: "credit", payment_tax: 3.99, max_tax: 50, 
                             active: true, icon: fixture_file_upload(Rails.root.join('spec/fixtures/visa_logo.gif'), 'visa_logo.gif'))
-      payment_method = PaymentMethod.new(name: 'VISA', method_type: "credit_card", payment_tax: 3.99, max_tax: 50, 
+      payment_method = PaymentMethod.new(name: 'VISA', method_type: "credit", payment_tax: 3.99, max_tax: 50, 
                             active: true, icon: fixture_file_upload(Rails.root.join('spec/fixtures/visa_logo.gif'), 'visa_logo.gif'))
 
       payment_method.valid?
@@ -25,7 +25,7 @@ RSpec.describe PaymentMethod, type: :model do
     end
 
     it 'payment_tax and max_tax must be numeric and greater than 0' do
-      payment_method = PaymentMethod.new(name: 'VISA', method_type: "credit_card", payment_tax: 'a', max_tax: -1, 
+      payment_method = PaymentMethod.new(name: 'VISA', method_type: "credit", payment_tax: 'a', max_tax: -1, 
                                          active: true, icon: fixture_file_upload(Rails.root.join('spec/fixtures/visa_logo.gif'), 'visa_logo.gif'))
       
       payment_method.valid?

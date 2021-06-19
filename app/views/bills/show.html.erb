@@ -1,0 +1,19 @@
+<h3><%= @bill.product.name %></h3>
+
+<dl>
+  <dt><%= 'Preço original' %></dt>
+  <dd><%= number_to_currency @bill.amount %></dd>
+  <dt><%= 'Preço de cobrança' %></dt>
+  <dd><%= number_to_currency @bill.final_amount %></dd>
+  <dt><%= 'Meio de Pagamento' %></dt>
+  <dd><%= @bill.payment_method.name %></dd>
+  <dt><%= 'Preço de cobrança' %></dt>
+  <dd><%= number_to_currency @bill.final_amount %></dd>
+  <dt><%= 'Data limite de pagamento' %></dt>
+  <dd><%= l @bill.due_date %></dd>
+  <dt><%= 'Status' %></dt>
+  <dd><%= Bill.human_enum_name(:status, @bill.status) %></dd>
+</dl>
+
+<%= link_to 'Editar', edit_bill_path %>
+<%= link_to 'Excluir', bill_path, method: :delete %>

@@ -1,0 +1,19 @@
+<h1>Criar Cobrança</h1>
+
+<% @bill.errors.each do |error| %>
+  <span><%= error.full_message %></span><br>
+<% end %>
+
+<%= form_with model: @bill do |form| %>
+
+  <%= form.label :product_id, 'Produto' %>
+  <%= form.collection_select :product_id, @products, :id, :name %>
+
+  <%= form.label :payment_method_id, 'Meios de Pagamento' %>
+  <%= form.collection_select :payment_method_id, @payment_methods, :id, :name %>
+
+  <%= form.label :due_date, 'Data limite de pagamento' %>
+  <%= form.date_field :due_date %>
+
+  <%= form.submit 'Criar Cobrança' %>
+<% end %>
