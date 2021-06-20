@@ -9,6 +9,8 @@
   <dd><%= number_with_delimiter @product.discount_ticket %></dd>
   <dt><%= 'Desconto para pix (%)' %></dt>
   <dd><%= number_with_delimiter @product.discount_pix %></dd>
+  <dt><%= 'Token de Identificação' %></dt>
+  <dd><%= @product.id_token %></dd>
 </dl>
 
 <%= link_to 'Editar', edit_product_path %>

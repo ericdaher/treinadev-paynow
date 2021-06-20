@@ -24,7 +24,7 @@ describe 'User views products' do
   it 'and view details' do
     company = Company.create!(name: 'CodePlay', cnpj: CNPJ.generate, email: 'faturamento@codeplay.com.br')
     user = User.create!(email: 'usuario@codeplay.com.br', password: '12345678', company: company)
-    Product.create!(name: 'Smartphone', price: 1000, company: company, discount_credit: 0, discount_ticket: 5, discount_pix: 10)
+    product = Product.create!(name: 'Smartphone', price: 1000, company: company, discount_credit: 0, discount_ticket: 5, discount_pix: 10)
 
     login_as user, scope: :user
     visit products_path
@@ -35,6 +35,7 @@ describe 'User views products' do
     expect(page).to have_text('0,0')
     expect(page).to have_text('5,0')
     expect(page).to have_text('10,0')
+    expect(page).to have_text(product.id_token)
   end
 
   it "can't view when not logged in" do

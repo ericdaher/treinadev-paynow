@@ -12,6 +12,8 @@ class Bill < ApplicationRecord
 
   validates :due_date, presence: true
 
+  has_secure_token :id_token
+
   def final_amount
     (amount / 100) * (100 - product["discount_#{payment_method.method_type}"])
   end

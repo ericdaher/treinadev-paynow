@@ -48,5 +48,6 @@ describe 'User views bills' do
     expect(page).to have_text('Boleto')
     expect(page).to have_text(I18n.l bill.due_date)
     expect(page).to have_text('Pendente')
+    expect(page).to have_text(bill.id_token)
   end
 end

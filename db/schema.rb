@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_20_192622) do
+ActiveRecord::Schema.define(version: 2021_06_20_202512) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -79,6 +79,8 @@ ActiveRecord::Schema.define(version: 2021_06_20_192622) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "receipt_id"
+    t.string "id_token"
+    t.index ["id_token"], name: "index_bills_on_id_token", unique: true
     t.index ["payment_method_id"], name: "index_bills_on_payment_method_id"
     t.index ["product_id"], name: "index_bills_on_product_id"
     t.index ["receipt_id"], name: "index_bills_on_receipt_id"
@@ -114,7 +116,9 @@ ActiveRecord::Schema.define(version: 2021_06_20_192622) do
     t.integer "company_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "id_token"
     t.index ["company_id"], name: "index_products_on_company_id"
+    t.index ["id_token"], name: "index_products_on_id_token", unique: true
   end
 
   create_table "receipts", force: :cascade do |t|
