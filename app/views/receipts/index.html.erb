@@ -1,0 +1,20 @@
+<h3>Consultar Recibo</h3>
+
+<%= form_with url: '/receipts', method: :get do %>
+  <%= label_tag :id, 'Número do Recibo' %>
+  <%= number_field_tag :id %>
+  <%= submit_tag 'Consultar' %>
+<% end %>
+
+<% if @receipt %>
+  <dl>
+    <dt><%= 'Data de vencimento' %></dt>
+    <dd><%= l @receipt.due_date %></dd>
+    <dt><%= 'Data do pagamento' %></dt>
+    <dd><%= l @receipt.payment_date %></dd>
+    <dt><%= 'Valor total' %></dt>
+    <dd><%= number_to_currency @receipt.amount %></dd>
+    <dt><%= 'Descrição' %></dt>
+    <dd><%= @receipt.description %></dd>
+  </dl>
+<% end %>

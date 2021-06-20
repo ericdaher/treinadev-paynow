@@ -3,6 +3,7 @@ class Bill < ApplicationRecord
   belongs_to :payment_method
   has_many :billing_attempt, dependent: :destroy
   has_one :company, through: :product
+  has_one :receipt
 
   before_save :set_amount, if: :will_save_change_to_product_id?
   after_create :create_billing_attempt

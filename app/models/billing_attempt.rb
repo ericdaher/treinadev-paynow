@@ -16,6 +16,7 @@ class BillingAttempt < ApplicationRecord
     if status == 'approved'
       self.bill.status = 'approved'
       self.bill.save!
+      create_new_receipt
     end
 
     if ['rejected_credit', 'rejected_data', 'rejected_unknown'].include?(status)
@@ -24,6 +25,11 @@ class BillingAttempt < ApplicationRecord
   end
 
   def create_new_billing_attempt
-    BillingAttempt.create!(bill: self.bill, status: 'pending')
+    BillingAttempt.create!(bill: bill, status: 'pending')
+  end
+
+  def create_new_receipt
+    Receipt.create!(due_date: bill.due_date, payment_date: Date.today, amount: bill.final_amount, bill: bill,
+                    description: "#{bill.payment_method.name} - #{bill.product.name} - #{bill.product.company.name}")
   end
 end
