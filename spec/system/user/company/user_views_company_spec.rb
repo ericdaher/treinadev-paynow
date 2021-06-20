@@ -15,6 +15,7 @@ describe 'User views company' do
     expect(page).to have_text('faturamento@codeplay.com.br')
     expect(page).to have_text('usuario@codeplay.com.br')
     expect(page).to have_text('usuario2@codeplay.com.br')
+    expect(page).to have_text(company.id_token)
   end
 
   it "can't view company when not logged in" do

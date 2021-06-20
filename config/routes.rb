@@ -7,7 +7,9 @@ Rails.application.routes.draw do
 
   root "home#index"
 
-  resources :companies, only: [:show, :new, :create, :edit, :update]
+  resources :companies, only: [:show, :new, :create, :edit, :update] do
+    post 'regenerate_token', on: :member
+  end
   resources :payment_methods, only: [:index, :show]
   resources :available_payment_methods, only: [:index, :show, :create, :destroy]
   resources :products
@@ -25,6 +27,7 @@ Rails.application.routes.draw do
     end
     resources :companies, only: [:index, :show, :edit, :update] do
       post 'toggle_active', on: :member
+      post 'regenerate_token', on: :member
     end
     resources :bills, only: [:index, :show]
     resources :billing_attempts, only: [] do

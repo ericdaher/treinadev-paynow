@@ -5,6 +5,9 @@
   <dd><%= @company.cnpj %></dd>
   <dt><%= 'Email para Faturamento' %></dt>
   <dd><%= @company.email %></dd>
+  <dt><%= 'Token de Identificação' %></dt>
+  <dd><%= @company.id_token %></dd>
+  <%= link_to 'Gerar Novo Token', regenerate_token_admins_company_path(@company), method: :post %>
 </dl>
 
 <% @company.users.each do |user| %>

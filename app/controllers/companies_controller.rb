@@ -1,8 +1,8 @@
 class CompaniesController < ApplicationController
-  before_action :authenticate_user!, only: [:show, :edit, :update]
-  before_action :set_company, only: [:show, :edit, :update]
-  before_action :check_user_company, only: [:show, :edit, :update]
-  before_action :check_user_role, only: [:edit, :update]
+  before_action :authenticate_user!, only: [:show, :edit, :update, :regenerate_token]
+  before_action :set_company, only: [:show, :edit, :update, :regenerate_token]
+  before_action :check_user_company, only: [:show, :edit, :update, :regenerate_token]
+  before_action :check_user_role, only: [:edit, :update, :regenerate_token]
 
   def new
     @company = Company.new
@@ -29,6 +29,11 @@ class CompaniesController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def regenerate_token
+    @company.regenerate_id_token
+    redirect_to company_path(@company), notice: 'Novo Token gerado com sucesso'
   end
 
   private

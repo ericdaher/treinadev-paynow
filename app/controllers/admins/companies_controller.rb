@@ -1,5 +1,5 @@
 class Admins::CompaniesController < Admins::AdminController 
-  before_action :set_company, only: [:show, :edit, :update, :toggle_active]
+  before_action :set_company, only: [:show, :edit, :update, :toggle_active, :regenerate_token]
   
   def index
     @companies = Company.all
@@ -30,6 +30,11 @@ class Admins::CompaniesController < Admins::AdminController
     end
 
     redirect_to admins_company_path(@company)
+  end
+
+  def regenerate_token
+    @company.regenerate_id_token
+    redirect_to admins_company_path(@company), notice: 'Novo Token gerado com sucesso'
   end
 
   private

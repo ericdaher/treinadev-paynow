@@ -7,6 +7,8 @@ class Company < ApplicationRecord
 
   has_many :users
 
+  has_secure_token :id_token
+
   def display_name
     "#{name} (@#{email_domain})"
   end
