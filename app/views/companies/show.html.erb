@@ -11,9 +11,9 @@
   <p><%= user.email %></p>
   <% if user != current_user %>
     <% if user.active? %>
-      <%= button_to 'Desativar usuário', toggle_active_user_path(user) %>
+      <%= link_to 'Desativar usuário', toggle_active_user_path(user), method: :post %>
     <% else %>
-      <%= button_to 'Ativar usuário', toggle_active_user_path(user) %>
+      <%= link_to 'Ativar usuário', toggle_active_user_path(user), method: :post %>
     <% end %>
   <% end %>
 <% end %>

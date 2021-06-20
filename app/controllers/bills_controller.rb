@@ -3,7 +3,7 @@ class BillsController < ApplicationController
   before_action :set_bill, only: [:show, :edit, :update, :destroy]
 
   def index
-    @bills = Bill.all
+    @bills = Bill.joins(:product).merge(Product.where(company: current_user.company))
   end
 
   def show

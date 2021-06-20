@@ -3,7 +3,9 @@
 <% @bills.each do |bill| %>
   <dl>
     <dt><%= 'Cobrança' %></dt>
-    <dd><%= link_to bill.display_name, bill_path(bill) %></dd>
+    <dd><%= link_to bill.display_name, admins_bill_path(bill) %></dd>
+    <dt><%= 'Empresa' %></dt>
+    <dd><%= bill.company.name %></dd>
     <dt><%= 'Preço de cobrança' %></dt>
     <dd><%= number_to_currency bill.final_amount %></dd>
     <dt><%= 'Status' %></dt>

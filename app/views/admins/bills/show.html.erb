@@ -24,5 +24,11 @@
     <dd><%= billing_attempt.attempt_date.nil? ? 'Cobrança não tentada' : l(billing_attempt.attempt_date) %></dd>
     <dt><%= 'Status' %></dt>
     <dd><%= BillingAttempt.human_enum_name(:status, billing_attempt.status) %></dd>
+    <% if billing_attempt.status == 'pending' %>
+      <%= link_to 'Aprovar (05)', approve_admins_billing_attempt_path, method: :post %>
+      <%= link_to 'Rejeitar - Crédito (09)', reject_credit_admins_billing_attempt_path, method: :post %>
+      <%= link_to 'Rejeitar - Dados (10)', reject_data_admins_billing_attempt_path, method: :post %>
+      <%= link_to 'Rejeitar - Desconhecido (11)', reject_unknown_admins_billing_attempt_path, method: :post %>
+    <% end %>
   <% end %>
 </dl>

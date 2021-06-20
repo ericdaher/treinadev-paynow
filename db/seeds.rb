@@ -27,10 +27,16 @@ t.save!
 p.save!
 puts 'Payment methods created'
 
-AvailablePaymentMethod.create!(company: c, payment_method: v)
+a = AvailablePaymentMethod.create!(company: c, payment_method: v)
 puts 'Available payment methods created'
 
-Product.create!(name: 'Smartphone', price: 1000, company: c)
-Product.create!(name: 'Videogame', price: 2000, company: c)
-Product.create!(name: 'Televisão', price: 1500, company: c)
+s = Product.create!(name: 'Smartphone', price: 1000, company: c)
+v = Product.create!(name: 'Videogame', price: 2000, company: c)
+t = Product.create!(name: 'Televisão', price: 1500, company: c)
 puts 'Products created'
+
+Bill.create!(product: s, payment_method: a.payment_method, due_date: 5.days.from_now)
+Bill.create!(product: v, payment_method: a.payment_method, due_date: 6.days.from_now)
+Bill.create!(product: t, payment_method: a.payment_method, due_date: 7.days.from_now)
+puts 'Bills created'
+    

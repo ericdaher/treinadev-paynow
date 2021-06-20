@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'User views bills' do
+describe 'User register bills' do
   it 'successfully' do
     company = Company.create!(name: 'CodePlay', cnpj: CNPJ.generate, email: 'faturamento@codeplay.com.br')
     user = User.create!(email: 'usuario@codeplay.com.br', password: '12345678', company: company)
@@ -20,7 +20,7 @@ describe 'User views bills' do
 
     expect(current_path).to eq(bills_path)
     expect(page).to have_text('Cobrança criada com sucesso')
-    expect(page).to have_text('Smartphone')
+    expect(page).to have_text('Smartphone - VISA')
     expect(page).to have_text('R$ 1.000,00')
     expect(page).to have_text('Pendente')
   end

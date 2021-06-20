@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-describe 'User views bills' do
+describe 'Admin views bills' do
   it 'successfully' do
+    admin = Admin.create!(email: 'admin@paynow.com.br', password: '12345678')
     company = Company.create!(name: 'CodePlay', cnpj: CNPJ.generate, email: 'faturamento@codeplay.com.br')
-    user = User.create!(email: 'usuario@codeplay.com.br', password: '12345678', company: company)
     product = Product.create!(name: 'Smartphone', price: 1000, company: company, discount_credit: 0, discount_ticket: 5, discount_pix: 10)
     visa = PaymentMethod.create!(name: 'VISA', method_type: "credit", payment_tax: 3.99, max_tax: 50, 
                           active: true, icon: fixture_file_upload(Rails.root.join('spec/fixtures/visa_logo.gif'), 'visa_logo.gif'))
@@ -16,8 +16,8 @@ describe 'User views bills' do
     Bill.create!(product: product, payment_method: ticket, due_date: 6.days.from_now)
     Bill.create!(product: product, payment_method: pix, due_date: 7.days.from_now)
     
-    login_as user, scope: :user
-    visit root_path
+    login_as admin, scope: :admin
+    visit admins_root_path
     click_on 'Cobranças'
 
     expect(page).to have_text('Smartphone - VISA')
@@ -26,20 +26,21 @@ describe 'User views bills' do
     expect(page).to have_text('R$ 1.000,00')
     expect(page).to have_text('R$ 950,00')
     expect(page).to have_text('R$ 900,00')
+    expect(page).to have_text('CodePlay', count: 3)
     expect(page).to have_text('Pendente', count: 3)
   end
 
   it 'and view details' do
+    admin = Admin.create!(email: 'admin@paynow.com.br', password: '12345678')
     company = Company.create!(name: 'CodePlay', cnpj: CNPJ.generate, email: 'faturamento@codeplay.com.br')
-    user = User.create!(email: 'usuario@codeplay.com.br', password: '12345678', company: company)
     product = Product.create!(name: 'Smartphone', price: 1000, company: company, discount_credit: 0, discount_ticket: 5, discount_pix: 10)
     ticket = PaymentMethod.create!(name: 'Boleto', method_type: "ticket", payment_tax: 2.99, max_tax: 40, 
                                    active: true, icon: fixture_file_upload(Rails.root.join('spec/fixtures/visa_logo.gif'), 'visa_logo.gif'))
 
     bill = Bill.create!(product: product, payment_method: ticket, due_date: 5.days.from_now)
     
-    login_as user, scope: :user
-    visit bills_path
+    login_as admin, scope: :admin
+    visit admins_bills_path
     click_on 'Smartphone - Boleto'
 
     expect(page).to have_text('Smartphone')

@@ -25,5 +25,12 @@ Rails.application.routes.draw do
     resources :companies, only: [:index, :show, :edit, :update] do
       post 'toggle_active', on: :member
     end
+    resources :bills, only: [:index, :show]
+    resources :billing_attempts, only: [] do
+      post 'approve', on: :member
+      post 'reject_credit', on: :member
+      post 'reject_data', on: :member
+      post 'reject_unknown', on: :member
+    end
   end
 end

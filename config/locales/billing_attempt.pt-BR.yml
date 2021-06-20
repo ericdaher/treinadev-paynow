@@ -1,0 +1,11 @@
+---
+pt-BR:
+  activerecord:
+    attributes:
+      billing_attempt:
+        status:
+          pending: Pendente (01)
+          approved: Aprovada (05)
+          rejected_credit: Rejeitada por falta de crédito (09)
+          rejected_data: Rejeitada por dados incorretos (10)
+          rejected_unknown: Rejeitada por motivo desconhecido (11)
