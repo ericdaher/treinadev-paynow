@@ -1,7 +1,7 @@
 class Bill < ApplicationRecord
   belongs_to :product
   belongs_to :payment_method
-  has_many :billing_attempt, dependent: :destroy
+  has_many :billing_attempts, dependent: :destroy
   has_one :company, through: :product
   has_one :receipt
 

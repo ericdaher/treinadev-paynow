@@ -21,7 +21,7 @@
 <h4>Tentativas de cobrança</h4>
 
 <dl>
-  <% @bill.billing_attempt.each do |billing_attempt| %>
+  <% @bill.billing_attempts.each do |billing_attempt| %>
     <dt><%= 'Data da tentativa' %></dt>
     <dd><%= billing_attempt.attempt_date.nil? ? 'Cobrança não tentada' : l(billing_attempt.attempt_date) %></dd>
     <dt><%= 'Status' %></dt>

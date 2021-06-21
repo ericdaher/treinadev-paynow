@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_20_202512) do
+ActiveRecord::Schema.define(version: 2021_06_21_010447) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -97,6 +97,15 @@ ActiveRecord::Schema.define(version: 2021_06_20_202512) do
     t.index ["id_token"], name: "index_companies_on_id_token", unique: true
   end
 
+  create_table "customers", force: :cascade do |t|
+    t.string "name"
+    t.string "cpf"
+    t.string "id_token"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["id_token"], name: "index_customers_on_id_token", unique: true
+  end
+
   create_table "payment_methods", force: :cascade do |t|
     t.string "name"
     t.integer "method_type", default: 0
@@ -130,6 +139,15 @@ ActiveRecord::Schema.define(version: 2021_06_20_202512) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["bill_id"], name: "index_receipts_on_bill_id"
+  end
+
+  create_table "transactions", force: :cascade do |t|
+    t.integer "customer_id", null: false
+    t.integer "company_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["company_id"], name: "index_transactions_on_company_id"
+    t.index ["customer_id"], name: "index_transactions_on_customer_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -169,5 +187,7 @@ ActiveRecord::Schema.define(version: 2021_06_20_202512) do
   add_foreign_key "bills", "receipts"
   add_foreign_key "products", "companies"
   add_foreign_key "receipts", "bills"
+  add_foreign_key "transactions", "companies"
+  add_foreign_key "transactions", "customers"
   add_foreign_key "users", "companies"
 end

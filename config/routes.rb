@@ -37,4 +37,11 @@ Rails.application.routes.draw do
       post 'reject_unknown', on: :member
     end
   end
+
+  namespace 'api' do
+    namespace 'v1' do
+      resources :customers, only: [:create]
+      resources :bills, only: [:create]
+    end
+  end
 end

@@ -11,7 +11,7 @@ RSpec.describe BillingAttempt, type: :model do
       ticket = PaymentMethod.create!(name: 'Boleto', method_type: "ticket", payment_tax: 2.99, max_tax: 40, 
                                   active: true, icon: fixture_file_upload(Rails.root.join('spec/fixtures/visa_logo.gif'), 'visa_logo.gif'))
       bill = Bill.create!(product: product, payment_method: ticket, due_date: 5.days.from_now)
-      billing_attempt = bill.billing_attempt.first
+      billing_attempt = bill.billing_attempts.first
 
       expect(Receipt.count).to eq(0) 
 
