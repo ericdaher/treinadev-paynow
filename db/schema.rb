@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_21_010447) do
+ActiveRecord::Schema.define(version: 2021_06_21_031133) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -57,7 +57,9 @@ ActiveRecord::Schema.define(version: 2021_06_21_010447) do
     t.integer "company_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "id_token"
     t.index ["company_id"], name: "index_available_payment_methods_on_company_id"
+    t.index ["id_token"], name: "index_available_payment_methods_on_id_token", unique: true
     t.index ["payment_method_id"], name: "index_available_payment_methods_on_payment_method_id"
   end
 
@@ -80,6 +82,8 @@ ActiveRecord::Schema.define(version: 2021_06_21_010447) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "receipt_id"
     t.string "id_token"
+    t.integer "customer_id", null: false
+    t.index ["customer_id"], name: "index_bills_on_customer_id"
     t.index ["id_token"], name: "index_bills_on_id_token", unique: true
     t.index ["payment_method_id"], name: "index_bills_on_payment_method_id"
     t.index ["product_id"], name: "index_bills_on_product_id"
@@ -182,6 +186,7 @@ ActiveRecord::Schema.define(version: 2021_06_21_010447) do
   add_foreign_key "available_payment_methods", "companies"
   add_foreign_key "available_payment_methods", "payment_methods"
   add_foreign_key "billing_attempts", "bills"
+  add_foreign_key "bills", "customers"
   add_foreign_key "bills", "payment_methods"
   add_foreign_key "bills", "products"
   add_foreign_key "bills", "receipts"

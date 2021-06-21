@@ -13,6 +13,8 @@
   <dd><%= Bill.human_enum_name(:status, @bill.status) %></dd>
   <dt><%= 'Token de Identificação' %></dt>
   <dd><%= @bill.id_token %></dd>
+  <dt><%= 'Comprador' %></dt>
+  <dd><%= @bill.customer.name %></dd>
 </dl>
 
 <%= link_to 'Editar', edit_bill_path %>

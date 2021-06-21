@@ -31,7 +31,7 @@ describe 'User views available payment method' do
     user = User.create!(email: 'usuario@codeplay.com.br', password: '12345678', company: company)
     payment_method = PaymentMethod.create!(name: 'VISA', method_type: "credit", payment_tax: 3.99, max_tax: 50, 
                           active: true, icon: fixture_file_upload(Rails.root.join('spec/fixtures/visa_logo.gif'), 'visa_logo.gif'))
-    AvailablePaymentMethod.create!(company: company, payment_method: payment_method)
+    available_payment_method = AvailablePaymentMethod.create!(company: company, payment_method: payment_method)
 
     login_as user, scope: :user
     visit available_payment_methods_path
@@ -44,6 +44,7 @@ describe 'User views available payment method' do
     expect(page).to have_text('Cartão de Crédito')
     expect(page).to have_text('3,99')
     expect(page).to have_text('R$ 50,00')
+    expect(page).to have_text(available_payment_method.id_token)
   end
 
   it "can't view when not logged in" do

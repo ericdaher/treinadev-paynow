@@ -11,10 +11,11 @@ describe 'User views bills' do
                           active: true, icon: fixture_file_upload(Rails.root.join('spec/fixtures/visa_logo.gif'), 'visa_logo.gif'))
     pix = PaymentMethod.create!(name: 'PIX', method_type: "pix", payment_tax: 0.99, max_tax: 30, 
                           active: true, icon: fixture_file_upload(Rails.root.join('spec/fixtures/visa_logo.gif'), 'visa_logo.gif'))
+    customer = Customer.create!(name: 'José da Silva', cpf: CPF.generate)
 
-    Bill.create!(product: product, payment_method: visa, due_date: 5.days.from_now)
-    Bill.create!(product: product, payment_method: ticket, due_date: 6.days.from_now)
-    Bill.create!(product: product, payment_method: pix, due_date: 7.days.from_now)
+    Bill.create!(product: product, payment_method: visa, due_date: 5.days.from_now, customer: customer)
+    Bill.create!(product: product, payment_method: ticket, due_date: 6.days.from_now, customer: customer)
+    Bill.create!(product: product, payment_method: pix, due_date: 7.days.from_now, customer: customer)
     
     login_as user, scope: :user
     visit root_path
@@ -35,8 +36,9 @@ describe 'User views bills' do
     product = Product.create!(name: 'Smartphone', price: 1000, company: company, discount_credit: 0, discount_ticket: 5, discount_pix: 10)
     ticket = PaymentMethod.create!(name: 'Boleto', method_type: "ticket", payment_tax: 2.99, max_tax: 40, 
                                    active: true, icon: fixture_file_upload(Rails.root.join('spec/fixtures/visa_logo.gif'), 'visa_logo.gif'))
+    customer = Customer.create!(name: 'José da Silva', cpf: CPF.generate)
 
-    bill = Bill.create!(product: product, payment_method: ticket, due_date: 5.days.from_now)
+    bill = Bill.create!(product: product, payment_method: ticket, due_date: 5.days.from_now, customer: customer)
     
     login_as user, scope: :user
     visit bills_path
@@ -49,5 +51,6 @@ describe 'User views bills' do
     expect(page).to have_text(I18n.l bill.due_date)
     expect(page).to have_text('Pendente')
     expect(page).to have_text(bill.id_token)
+    expect(page).to have_text('José da Silva')
   end
 end

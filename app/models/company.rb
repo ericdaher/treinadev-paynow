@@ -6,6 +6,7 @@ class Company < ApplicationRecord
   validates :cnpj, valid_cnpj: true
 
   has_many :users
+  has_many :products
 
   has_secure_token :id_token
 

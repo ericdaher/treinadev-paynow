@@ -12,6 +12,7 @@ class BillsController < ApplicationController
   def new
     @products = Product.where(company: current_user.company)
     @payment_methods = AvailablePaymentMethod.where(company: current_user.company).map(&:payment_method)
+    @customers = Transaction.where(company: current_user.company).map(&:customer)
     @bill = Bill.new
   end
 
@@ -45,7 +46,7 @@ class BillsController < ApplicationController
   private
 
   def bill_params
-    params.require(:bill).permit(:product_id, :payment_method_id, :due_date)
+    params.require(:bill).permit(:product_id, :payment_method_id, :due_date, :customer_id)
   end
 
   def set_bill

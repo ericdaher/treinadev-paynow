@@ -8,6 +8,8 @@ describe 'User register bills' do
     visa = PaymentMethod.create!(name: 'VISA', method_type: "credit", payment_tax: 3.99, max_tax: 50, 
                           active: true, icon: fixture_file_upload(Rails.root.join('spec/fixtures/visa_logo.gif'), 'visa_logo.gif'))
     AvailablePaymentMethod.create!(company: company, payment_method: visa)
+    customer = Customer.create!(name: 'José da Silva', cpf: CPF.generate)
+    Transaction.create!(customer: customer, company: company)
 
     login_as user, scope: :user
     visit bills_path
@@ -15,6 +17,7 @@ describe 'User register bills' do
 
     select 'Smartphone', from: 'Produto'
     select 'VISA', from: 'Meios de Pagamento'
+    select 'José da Silva', from: 'Clientes'
     fill_in 'Data limite de pagamento', with: 5.days.from_now
     click_on 'Criar Cobrança'
 

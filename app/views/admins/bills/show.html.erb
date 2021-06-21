@@ -11,6 +11,8 @@
   <dd><%= l @bill.due_date %></dd>
   <dt><%= 'Status' %></dt>
   <dd><%= Bill.human_enum_name(:status, @bill.status) %></dd>
+  <dt><%= 'Comprador' %></dt>
+  <dd><%= @bill.customer.name %></dd>
 </dl>
 
 <%= link_to 'Editar', edit_bill_path %>
