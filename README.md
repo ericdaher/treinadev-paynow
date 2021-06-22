@@ -35,6 +35,7 @@ CodePlay no nosso contexto.
 - Devise
 - CPF/CNPJ
 - PaperTrail
+- SimpleCov
 
 ### INICIANDO
 
@@ -52,3 +53,5 @@ rails s
 ```
 rspec spec/system/visitor/visitor_visits_homepage_spec.rb
 ```
+
+- Ao executar testes, um arquivo de cobertura pode ser encontrado em coverage/index.html
