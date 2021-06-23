@@ -8,7 +8,7 @@ describe 'Admin manages billing attempts status' do
     visa = PaymentMethod.create!(name: 'VISA', method_type: "credit", payment_tax: 3.99, max_tax: 50, 
                           active: true, icon: fixture_file_upload(Rails.root.join('spec/fixtures/visa_logo.gif'), 'visa_logo.gif'))
     customer = Customer.create!(name: 'José da Silva', cpf: CPF.generate)
-    bill = Bill.create!(product: product, payment_method: visa, due_date: 5.days.from_now, customer: customer)
+    bill = Bill.create!(company: company, product: product, payment_method: visa, due_date: 5.days.from_now, customer: customer)
 
     login_as admin, scope: :admin
     visit admins_bill_path(bill)
@@ -31,7 +31,7 @@ describe 'Admin manages billing attempts status' do
     visa = PaymentMethod.create!(name: 'VISA', method_type: "credit", payment_tax: 3.99, max_tax: 50, 
                           active: true, icon: fixture_file_upload(Rails.root.join('spec/fixtures/visa_logo.gif'), 'visa_logo.gif'))
     customer = Customer.create!(name: 'José da Silva', cpf: CPF.generate)
-    bill = Bill.create!(product: product, payment_method: visa, due_date: 5.days.from_now, customer: customer)
+    bill = Bill.create!(company: company, product: product, payment_method: visa, due_date: 5.days.from_now, customer: customer)
 
     login_as admin, scope: :admin
     visit admins_bill_path(bill)
@@ -55,7 +55,7 @@ describe 'Admin manages billing attempts status' do
     visa = PaymentMethod.create!(name: 'VISA', method_type: "credit", payment_tax: 3.99, max_tax: 50, 
                           active: true, icon: fixture_file_upload(Rails.root.join('spec/fixtures/visa_logo.gif'), 'visa_logo.gif'))
     customer = Customer.create!(name: 'José da Silva', cpf: CPF.generate)
-    bill = Bill.create!(product: product, payment_method: visa, due_date: 5.days.from_now, customer: customer)
+    bill = Bill.create!(company: company, product: product, payment_method: visa, due_date: 5.days.from_now, customer: customer)
 
     login_as admin, scope: :admin
     visit admins_bill_path(bill)
@@ -79,7 +79,7 @@ describe 'Admin manages billing attempts status' do
     visa = PaymentMethod.create!(name: 'VISA', method_type: "credit", payment_tax: 3.99, max_tax: 50, 
                           active: true, icon: fixture_file_upload(Rails.root.join('spec/fixtures/visa_logo.gif'), 'visa_logo.gif'))
     customer = Customer.create!(name: 'José da Silva', cpf: CPF.generate)
-    bill = Bill.create!(product: product, payment_method: visa, due_date: 5.days.from_now, customer: customer)
+    bill = Bill.create!(company: company, product: product, payment_method: visa, due_date: 5.days.from_now, customer: customer)
 
     login_as admin, scope: :admin
     visit admins_bill_path(bill)

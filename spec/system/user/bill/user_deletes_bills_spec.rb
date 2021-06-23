@@ -9,7 +9,7 @@ describe 'User deletes bills' do
                                    active: true, icon: fixture_file_upload(Rails.root.join('spec/fixtures/visa_logo.gif'), 'visa_logo.gif'))
     customer = Customer.create!(name: 'José da Silva', cpf: CPF.generate)
 
-    bill = Bill.create!(product: product, payment_method: ticket, due_date: 5.days.from_now, customer: customer)
+    bill = Bill.create!(company: company, product: product, payment_method: ticket, due_date: 5.days.from_now, customer: customer)
 
     login_as user, scope: :user
     visit bill_path(bill)

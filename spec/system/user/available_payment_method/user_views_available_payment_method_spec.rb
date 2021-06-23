@@ -44,7 +44,7 @@ describe 'User views available payment method' do
     expect(page).to have_text('Cartão de Crédito')
     expect(page).to have_text('3,99')
     expect(page).to have_text('R$ 50,00')
-    expect(page).to have_text(available_payment_method.id_token)
+    expect(page).to have_text(payment_method.id_token)
   end
 
   it "can't view when not logged in" do

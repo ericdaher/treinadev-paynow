@@ -9,7 +9,7 @@
   <dt><%= 'Taxa máxima' %></dt>
   <dd><%= number_to_currency @available_payment_method.payment_method.max_tax %></dd>
   <dt><%= 'Token de Identificação' %></dt>
-  <dd><%= @available_payment_method.id_token %></dd>
+  <dd><%= @available_payment_method.payment_method.id_token %></dd>
 </dl>
 
 <%= link_to 'Excluir', available_payment_method_path, method: :delete %>

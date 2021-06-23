@@ -17,7 +17,7 @@ class BillsController < ApplicationController
   end
 
   def create
-    @bill = Bill.new(bill_params)
+    @bill = Bill.new(bill_params.merge(company: current_user.company))
     if @bill.save
       redirect_to bills_path, notice: 'Cobrança criada com sucesso'
     else

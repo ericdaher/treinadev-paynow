@@ -14,7 +14,7 @@ describe 'User edits bills' do
     AvailablePaymentMethod.create!(company: company, payment_method: ticket)
     customer = Customer.create!(name: 'José da Silva', cpf: CPF.generate)
 
-    bill = Bill.create!(product: product, payment_method: ticket, due_date: 5.days.from_now, customer: customer)
+    bill = Bill.create!(company: company, product: product, payment_method: ticket, due_date: 5.days.from_now, customer: customer)
     
     login_as user, scope: :user
     visit bill_path(bill)

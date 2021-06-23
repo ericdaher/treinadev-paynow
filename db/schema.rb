@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_21_031133) do
+ActiveRecord::Schema.define(version: 2021_06_23_003644) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -57,9 +57,7 @@ ActiveRecord::Schema.define(version: 2021_06_21_031133) do
     t.integer "company_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "id_token"
     t.index ["company_id"], name: "index_available_payment_methods_on_company_id"
-    t.index ["id_token"], name: "index_available_payment_methods_on_id_token", unique: true
     t.index ["payment_method_id"], name: "index_available_payment_methods_on_payment_method_id"
   end
 
@@ -83,6 +81,8 @@ ActiveRecord::Schema.define(version: 2021_06_21_031133) do
     t.integer "receipt_id"
     t.string "id_token"
     t.integer "customer_id", null: false
+    t.integer "company_id", null: false
+    t.index ["company_id"], name: "index_bills_on_company_id"
     t.index ["customer_id"], name: "index_bills_on_customer_id"
     t.index ["id_token"], name: "index_bills_on_id_token", unique: true
     t.index ["payment_method_id"], name: "index_bills_on_payment_method_id"
@@ -118,6 +118,8 @@ ActiveRecord::Schema.define(version: 2021_06_21_031133) do
     t.boolean "active", default: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "id_token"
+    t.index ["id_token"], name: "index_payment_methods_on_id_token", unique: true
   end
 
   create_table "products", force: :cascade do |t|
@@ -186,6 +188,7 @@ ActiveRecord::Schema.define(version: 2021_06_21_031133) do
   add_foreign_key "available_payment_methods", "companies"
   add_foreign_key "available_payment_methods", "payment_methods"
   add_foreign_key "billing_attempts", "bills"
+  add_foreign_key "bills", "companies"
   add_foreign_key "bills", "customers"
   add_foreign_key "bills", "payment_methods"
   add_foreign_key "bills", "products"

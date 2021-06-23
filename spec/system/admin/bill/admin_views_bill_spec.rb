@@ -13,9 +13,9 @@ describe 'Admin views bills' do
                           active: true, icon: fixture_file_upload(Rails.root.join('spec/fixtures/visa_logo.gif'), 'visa_logo.gif'))
     customer = Customer.create!(name: 'José da Silva', cpf: CPF.generate)
 
-    Bill.create!(product: product, payment_method: visa, due_date: 5.days.from_now, customer: customer)
-    Bill.create!(product: product, payment_method: ticket, due_date: 6.days.from_now, customer: customer)
-    Bill.create!(product: product, payment_method: pix, due_date: 7.days.from_now, customer: customer)
+    Bill.create!(company: company, product: product, payment_method: visa, due_date: 5.days.from_now, customer: customer)
+    Bill.create!(company: company, product: product, payment_method: ticket, due_date: 6.days.from_now, customer: customer)
+    Bill.create!(company: company, product: product, payment_method: pix, due_date: 7.days.from_now, customer: customer)
     
     login_as admin, scope: :admin
     visit admins_root_path
@@ -39,7 +39,7 @@ describe 'Admin views bills' do
                                    active: true, icon: fixture_file_upload(Rails.root.join('spec/fixtures/visa_logo.gif'), 'visa_logo.gif'))
     customer = Customer.create!(name: 'José da Silva', cpf: CPF.generate)
 
-    bill = Bill.create!(product: product, payment_method: ticket, due_date: 5.days.from_now, customer: customer)
+    bill = Bill.create!(company: company, product: product, payment_method: ticket, due_date: 5.days.from_now, customer: customer)
     
     login_as admin, scope: :admin
     visit admins_bills_path

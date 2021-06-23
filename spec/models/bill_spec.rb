@@ -21,7 +21,7 @@ RSpec.describe Bill, type: :model do
 
       expect(BillingAttempt.count).to eq(0)
       
-      bill = Bill.create!(product: product, payment_method: ticket, due_date: 5.days.from_now, customer: customer)
+      bill = Bill.create!(company: company, product: product, payment_method: ticket, due_date: 5.days.from_now, customer: customer)
       expect(BillingAttempt.count).to eq(1) 
       expect(bill.billing_attempts).to include(BillingAttempt.find(1))
       expect(bill.billing_attempts.first.status).to eq('pending')
